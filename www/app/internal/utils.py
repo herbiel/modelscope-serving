@@ -2,7 +2,7 @@ import base64
 
 import cv2
 import numpy as np
-
+import requests
 
 def numpy_to_base64(image_np, image_ext):
     data = cv2.imencode('.' + image_ext, image_np)[1]
@@ -74,3 +74,29 @@ def base64_to_file(image_base64, filename):
     with open(filename, 'wb') as f:
         f.write(image_bytes)
         return filename
+
+
+def url_to_numpy(image_url):
+    try:
+        # Fetch the image from the URL
+        response = requests.get(image_url)
+
+        # Check if the request was successful
+        if response.status_code != 200:
+            raise ValueError("Failed to fetch the image from the URL")
+
+        # Convert the image content to a NumPy array
+        image_np = np.frombuffer(response.content, dtype=np.uint8)
+
+        # Decode the NumPy array into an image
+        image_np2 = cv2.imdecode(image_np, cv2.IMREAD_COLOR)
+
+        # Check if decoding was successful
+        if image_np2 is None:
+            raise ValueError("Image decoding failed.")
+
+        return image_np2
+
+    except Exception as e:
+        print(f"Error in url_to_numpy: {e}")
+        return None
