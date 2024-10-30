@@ -12,7 +12,7 @@ class FaceDetect(SingletonInstance):
         return pipeline(
             task=Tasks.face_recognition,
             model='damo/cv_ir101_facerecognition_cfglint',
-            model_revision='v2.0.2',  # 20230130
+            model_revision='v1.0.0',  # 20230130
         )
 
     def handle(self, image1: Any,image2:Any):
