@@ -11,7 +11,7 @@ class FaceDetect(SingletonInstance):
         # https://www.modelscope.cn/models/damo/cv_hrnetv2w32_body-2d-keypoints_image/summary
         return pipeline(
             task=Tasks.face_recognition,
-            model='damo/cv_ir50_face-recognition_arcface',
+            model='damo/cv_vit_face-recognition',
             model_revision='v2.0.2',  # 20230130
         )
 
