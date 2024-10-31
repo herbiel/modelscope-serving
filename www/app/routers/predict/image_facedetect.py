@@ -11,7 +11,7 @@ def post_facedetect(
         image1: str = Body(embed=True,alias="image1", min_length=10),
         model_manager: ModelManager = Depends(get_model_manager)
 ):
-    if not image1 or not image2:
+    if not image1:
         raise HTTPException(status_code=422, detail="Request Error, invalid image")
     result = model_manager.facedetect.handle(image1)
 
