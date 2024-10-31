@@ -10,7 +10,7 @@ class FaceSim(SingletonInstance):
     def build(self):
         # https://www.modelscope.cn/models/damo/cv_hrnetv2w32_body-2d-keypoints_image/summary
         return pipeline(
-            task=Tasks.face_detection,
+            task=Tasks.face_recognition,
             model='damo/cv_ir101_facerecognition_cfglint',
             model_revision='v1.0.0',  # 20230130
         )
