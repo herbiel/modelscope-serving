@@ -17,8 +17,8 @@ class FaceSim(SingletonInstance):
     def handle(self, image1: Any,image2:Any):
         print(image1)
         print(image2)
-        emb1 = self.instance()(image1)[OutputKeys.SCORES][0][0]
-        emb2 = self.instance()(image2)[OutputKeys.SCORES][0][0]
+        emb1 = self.instance()(image1)[OutputKeys.IMG_EMBEDDING]
+        emb2 = self.instance()(image2)[OutputKeys.IMG_EMBEDDING]
         sim = np.dot(emb1[0], emb2[0])
         print(sim)
         if sim:
