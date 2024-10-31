@@ -11,17 +11,12 @@ class FaceDetect(SingletonInstance):
         # https://www.modelscope.cn/models/damo/cv_hrnetv2w32_body-2d-keypoints_image/summary
         return pipeline(
             task=Tasks.face_recognition,
-            model='damo/cv_ir101_facerecognition_cfglint',
-            model_revision='v1.0.0',  # 20230130
+            model='damo/cv_manual_face-detection_tinymog',
         )
 
-    def handle(self, image1: Any,image2:Any):
-        print(image1)
-        print(image2)
-        emb1 = self.instance()(image1)[OutputKeys.IMG_EMBEDDING]
-        emb2 = self.instance()(image2)[OutputKeys.IMG_EMBEDDING]
-        sim = np.dot(emb1[0], emb2[0])
-        print(sim)
-        if sim:
-            output = str(sim)
+    def handle(self, image1: Any):
+        raw_result = self.instance()(image1)
+        print(raw_result)
+        if raw_result:
+            output = str(raw_result)
         return output

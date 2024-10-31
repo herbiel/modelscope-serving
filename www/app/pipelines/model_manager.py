@@ -6,6 +6,7 @@ from .body_2d_keypoint import Body2DKeypoint
 # from .person_image_segment import PersonImageSegment
 # from .product_image_segment import ProductImageSegment
 # from .tts_emotion import TtsEmotion
+from .image_facesmi import FaceSim
 from .image_facedetect import FaceDetect
 
 
@@ -22,10 +23,12 @@ class ModelManager:
         # self.asr_paraformer = AsrParaformer(singleton=self.SINGLETON)
         # self.ocr_general = OcrGeneral(singleton=self.SINGLETON)
         #self.body_2d_keypoint = Body2DKeypoint(singleton=self.SINGLETON)
+        self.facesmi = FaceSim(singleton=self.SINGLETON)
         self.facedetect = FaceDetect(singleton=self.SINGLETON)
 
     def initialize(self):
         self.facedetect.initialize()
+        self.facesmi.initialize()
         #self.image_cartoon.initialize()
         #self.chinese_segment.initialize()
         #self.product_image_segment.initialize()

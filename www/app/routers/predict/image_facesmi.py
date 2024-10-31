@@ -6,13 +6,14 @@ from pydantic import BaseModel
 # https://www.modelscope.cn/docs/%E9%83%A8%E7%BD%B2EAS
 router = APIRouter()
 
-@router.post('/facedetect')
-def post_facedetect(
+@router.post('/facesmi')
+def post_facesim(
         image1: str = Body(embed=True,alias="image1", min_length=10),
+        image2: str = Body(embed=True,alias="image2", min_length=10),
         model_manager: ModelManager = Depends(get_model_manager)
 ):
     if not image1 or not image2:
         raise HTTPException(status_code=422, detail="Request Error, invalid image")
-    result = model_manager.facedetect.handle(image1)
+    result = model_manager.facesmi.handle(image1, image2)
 
     return result
