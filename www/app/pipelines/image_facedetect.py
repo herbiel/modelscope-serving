@@ -20,12 +20,18 @@ class FaceDetect(SingletonInstance):
             raw_result = self.instance()(image1)
             print({image1} is {str(raw_result)})
             score_list = raw_result['scores']
-
-            output = {
-                "code": 200,
-                "error": None,
-                "score": score_list
-            }
+            if score_list.count == 1:
+                output = {
+                    "code": 200,
+                    "error": None,
+                    "score": score_list
+                }
+            else:
+                output = {
+                    "code": 200,
+                    "error": None,
+                    "score": score_list[0]
+                }
 
         except Exception as e:
             # Handle any unexpected errors during the similarity calculation
