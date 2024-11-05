@@ -16,17 +16,17 @@ class FaceSim(SingletonInstance):
 
     def handle(self, image1: Any,image2:Any):
 
-        emb1 = self.instance()(image1)[OutputKeys.IMG_EMBEDDING]
-        emb2 = self.instance()(image2)[OutputKeys.IMG_EMBEDDING]
-        if emb1 is None or emb2 is None:
+        if image1 is None or image2 is None:
             # If either embedding is None, return an error response
             output = {
                 "code": 400,
-                "error": "Failed to generate embeddings for one or both images",
+                "error": "Failed to get images",
                 "score": None
             }
 
         try:
+            emb1 = self.instance()(image1)[OutputKeys.IMG_EMBEDDING]
+            emb2 = self.instance()(image2)[OutputKeys.IMG_EMBEDDING]
             sim = np.dot(emb1[0], emb2[0])
             print("{image1} with {image2} sim is {str(sim)}")
             return {

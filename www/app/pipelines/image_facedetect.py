@@ -19,10 +19,12 @@ class FaceDetect(SingletonInstance):
         try:
             raw_result = self.instance()(image1)
             print({image1} is {str(raw_result)})
+            score_list = raw_result['scores']
+
             output = {
                 "code": 200,
                 "error": None,
-                "score": str(raw_result)
+                "score": score_list
             }
 
         except Exception as e:
