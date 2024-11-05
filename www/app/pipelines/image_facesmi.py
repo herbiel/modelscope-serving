@@ -15,12 +15,30 @@ class FaceSim(SingletonInstance):
         )
 
     def handle(self, image1: Any,image2:Any):
-        print(image1)
-        print(image2)
+
         emb1 = self.instance()(image1)[OutputKeys.IMG_EMBEDDING]
         emb2 = self.instance()(image2)[OutputKeys.IMG_EMBEDDING]
-        sim = np.dot(emb1[0], emb2[0])
-        print(sim)
-        if sim:
-            output = str(sim)
-        return output
+        if emb1 is None or emb2 is None:
+            # If either embedding is None, return an error response
+            output = {
+                "code": 400,
+                "error": "Failed to generate embeddings for one or both images",
+                "score": None
+            }
+        else:
+            sim = np.dot(emb1[0], emb2[0])
+        print("{image1}emb is {emb1},{image2} emb is {emb2},sim is {sim}")
+        try:
+            sim = np.dot(emb1[0], emb2[0])
+            return {
+                "code": 200,
+                "error": None,
+                "score": str(sim)
+            }
+        except Exception as e:
+            # Handle any unexpected errors during the similarity calculation
+            return {
+                "code": 500,
+                "error": str(e),
+                "sim": None
+            }
