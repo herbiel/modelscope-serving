@@ -18,7 +18,7 @@ class FaceDetect(SingletonInstance):
     def handle(self, image1: Any):
         try:
             raw_result = self.instance()(image1)
-            print({image1} is {raw_result})
+            print({image1} is {str(raw_result)})
             output = {
                 "code": 200,
                 "error": None,

@@ -25,11 +25,10 @@ class FaceSim(SingletonInstance):
                 "error": "Failed to generate embeddings for one or both images",
                 "score": None
             }
-        else:
-            sim = np.dot(emb1[0], emb2[0])
-        print("{image1}emb is {emb1},{image2} emb is {emb2},sim is {sim}")
+
         try:
             sim = np.dot(emb1[0], emb2[0])
+            print("{image1} with {image2} sim is {str(sim)}")
             return {
                 "code": 200,
                 "error": None,
