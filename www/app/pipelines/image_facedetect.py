@@ -16,21 +16,21 @@ class FaceDetect(SingletonInstance):
         )
 
     def handle(self, image1: Any):
-        raw_result = self.instance()(image1)
         try:
             raw_result = self.instance()(image1)
             print({image1} is {raw_result})
-            return {
+            output = {
                 "code": 200,
                 "error": None,
                 "score": str(raw_result)
             }
+
         except Exception as e:
             # Handle any unexpected errors during the similarity calculation
-            return {
+            output =  {
                 "code": 500,
                 "error": str(e),
                  "score": None
             }
-
+        return output
 
