@@ -20,7 +20,7 @@ class FaceDetect(SingletonInstance):
             raw_result = self.instance()(image1)
             print({image1} is {str(raw_result)})
             score_list = raw_result['scores']
-            if score_list.count == 1:
+            if score_list.count != 0:
                 output = {
                     "code": 200,
                     "error": None,
@@ -28,9 +28,9 @@ class FaceDetect(SingletonInstance):
                 }
             else:
                 output = {
-                    "code": 200,
-                    "error": None,
-                    "score": score_list[0]
+                    "code": 404,
+                    "error": "Not Found Face in Image",
+                    "score": None
                 }
 
         except Exception as e:
