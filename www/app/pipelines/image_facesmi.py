@@ -28,7 +28,7 @@ class FaceSim(SingletonInstance):
             emb1 = self.instance()(image1)[OutputKeys.IMG_EMBEDDING]
             emb2 = self.instance()(image2)[OutputKeys.IMG_EMBEDDING]
             sim = np.dot(emb1[0], emb2[0])
-            print("{image1} with {image2} sim is {str(sim)}")
+            print(f"{image1} with {image2} sim is {str(sim)}")
             return {
                 "code": 200,
                 "error": None,

@@ -18,7 +18,7 @@ class FaceDetect(SingletonInstance):
     def handle(self, image1: Any):
         try:
             raw_result = self.instance()(image1)
-            print({image1} is {str(raw_result)})
+            print(f"{image1} is {str(raw_result)}")
             score_list = raw_result['scores']
             if score_list.count != 0:
                 output = {
