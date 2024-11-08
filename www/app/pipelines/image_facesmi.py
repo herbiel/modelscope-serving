@@ -39,5 +39,5 @@ class FaceSim(SingletonInstance):
             return {
                 "code": 500,
                 "error": str(e),
-                "sim": None
+                "score": None
             }

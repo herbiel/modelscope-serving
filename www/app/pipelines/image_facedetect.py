@@ -38,7 +38,7 @@ class FaceDetect(SingletonInstance):
             output =  {
                 "code": 500,
                 "error": str(e),
-                 "score": None
+                "score": None
             }
         return output
 
